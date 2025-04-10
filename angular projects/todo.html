@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="todoApp">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do App</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="todo.js"></script>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f4f4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      font-size: 16px;
+      width: 250px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-right: 10px;
+    }
+
+    button {
+      padding: 8px 14px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
+      width: 320px;
+    }
+
+    li {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    li input[type="checkbox"] {
+      margin-right: 10px;
+    }
+
+    .done-task {
+      text-decoration: line-through;
+      color: #888;
+    }
+
+    .task-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .delete-btn {
+      background-color: #f44336;
+    }
+
+    .delete-btn:hover {
+      background-color: #d32f2f;
+    }
+  </style>
+  
+</head>
+
+<body ng-controller="todoCtrl">
+  <h2>📝 My To-Do List</h2>
+
+  <input type="text" ng-model="newtask" placeholder="Add your new task">
+  <button ng-click="addtask()">Add</button>
+
+  <ul>
+    <li ng-repeat="task in tasks">
+        <input type="checkbox" ng-model="task.done">
+        <span ng-class="{'done-task':taskdone }">{{ task.text }}</span>
+        <button ng-click="removetask($index)">❌</button>
+    </li>
+    
+  </ul>
+</body>
+</html>
+
